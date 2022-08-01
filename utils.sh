@@ -150,12 +150,6 @@ build_yt() {
 	fi
 	patch_apk "$stock_apk" "$patched_apk" "${YT_PATCHER_ARGS} -m ${RV_INTEGRATIONS_APK}"
 
-	if [[ "$YT_PATCHER_ARGS" != *"-e microg-support"* ]]; then
-		mv -f "$patched_apk" build
-		echo "Built YouTube (no root) '${BUILD_DIR}/${patched_apk}'"
-		return
-	fi
-
 	service_sh "com.google.android.youtube"
 	module_prop "ytrv-magisk" \
 		"YouTube ReVanced" \
@@ -189,12 +183,6 @@ build_music() {
 		log "downloaded from: [APKMirror - YouTube Music ${arch}]($dl_url)"
 	fi
 	patch_apk "$stock_apk" "$patched_apk" "${MUSIC_PATCHER_ARGS} -m ${RV_INTEGRATIONS_APK}"
-
-	if [[ "$MUSIC_PATCHER_ARGS" != *"-e music-microg-support"* ]]; then
-		mv -f "$patched_apk" build
-		echo "Built Music (no root) '${BUILD_DIR}/${patched_apk}'"
-		return
-	fi
 
 	service_sh "com.google.android.apps.youtube.music"
 
