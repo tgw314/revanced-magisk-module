@@ -20,7 +20,7 @@ jobs:
         run: sudo apt-get install -y xdelta3
 
       - id: next_ver_code
-        run: echo ::set-output name=NEXT_VER_CODE::$(TZ=Asia/Tokyo date +%Y%m%d%H)
+        run: echo ::set-output name=NEXT_VER_CODE::$(TZ=Asia/Tokyo date +%y%m%d%H)
 
       - run: ./build.sh build
         env:
