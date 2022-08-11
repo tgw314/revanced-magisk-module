@@ -19,14 +19,8 @@ jobs:
       - name: Install xdelta3
         run: sudo apt-get install -y xdelta3
 
-      - id: prev_tag
-        run: |
-          TAG=$(git tag --sort=creatordate | tail -1)
-          if [ -z "$TAG" ]; then TAG=1; fi
-          echo ::set-output name=tag::$TAG
-
       - id: next_ver_code
-        run: export TAG=${{ steps.prev_tag.outputs.tag }}; echo ::set-output name=NEXT_VER_CODE::$((TAG + 1))
+        run: echo ::set-output name=NEXT_VER_CODE::$(TZ=Asia/Tokyo date +%Y%m%d-%H%M%S)
 
       - run: ./build.sh build
         env:
