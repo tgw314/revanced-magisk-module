@@ -17,15 +17,17 @@ CUSTOMIZE_SH=$(cat $MODULE_SCRIPTS_DIR/customize.sh)
 
 get_prebuilts() {
 	echo "Getting prebuilts"
-	RV_CLI_URL=$(req https://api.github.com/repos/revanced/revanced-cli/releases/latest - | tr -d ' ' | sed -n 's/.*"browser_download_url":"\(.*jar\)".*/\1/p')
-	RV_CLI_JAR="${TEMP_DIR}/$(echo "$RV_CLI_URL" | awk -F/ '{ print $NF }')"
+	RV_CLI_URL=$(req https://api.github.com/repos/j-hc/revanced-cli/releases/latest - | tr -d ' ' | sed -n 's/.*"browser_download_url":"\(.*jar\)".*/\1/p')
+	RV_CLI_JAR="${TEMP_DIR}/${RV_CLI_URL##*/}"
 	log "CLI: ${RV_CLI_JAR#"$TEMP_DIR/"}"
+
 	RV_INTEGRATIONS_URL=$(req https://api.github.com/repos/revanced/revanced-integrations/releases/latest - | tr -d ' ' | sed -n 's/.*"browser_download_url":"\(.*apk\)".*/\1/p')
-	RV_INTEGRATIONS_APK="${TEMP_DIR}/$(echo "$RV_INTEGRATIONS_URL" | awk '{n=split($0, arr, "/"); printf "%s-%s.apk", substr(arr[n], 0, length(arr[n]) - 4), arr[n-1]}')"
+	RV_INTEGRATIONS_APK=${RV_INTEGRATIONS_URL##*/}
+	RV_INTEGRATIONS_APK="${TEMP_DIR}/${RV_INTEGRATIONS_APK%.apk}-$(cut -d/ -f8 <<<"$RV_INTEGRATIONS_URL").apk"
 	log "Integrations: ${RV_INTEGRATIONS_APK#"$TEMP_DIR/"}"
 
 	RV_PATCHES_URL=$(req https://api.github.com/repos/revanced/revanced-patches/releases/latest - | tr -d ' ' | sed -n 's/.*"browser_download_url":"\(.*jar\)".*/\1/p')
-	RV_PATCHES_JAR="${TEMP_DIR}/$(echo "$RV_PATCHES_URL" | awk -F/ '{ print $NF }')"
+	RV_PATCHES_JAR="${TEMP_DIR}/${RV_PATCHES_URL##*/}"
 	log "Patches: ${RV_PATCHES_JAR#"$TEMP_DIR/"}"
 
 	dl_if_dne "$RV_CLI_JAR" "$RV_CLI_URL"
@@ -55,9 +57,9 @@ get_xdelta() {
 	extract_deb "${MODULE_TEMPLATE_DIR}/lib/arm/" "https://grimler.se/termux/termux-main/pool/main/libl/liblzma/liblzma_5.2.5-1_arm.deb" "./data/data/com.termux/files/usr/lib/*so*"
 }
 
-get_cmp() {
-	dl_if_dne "${MODULE_TEMPLATE_DIR}/bin/arm64/cmp" "https://github.com/Zackptg5/Cross-Compiled-Binaries-Android/blob/master/diffutils/cmp-arm64?raw=true"
-	dl_if_dne "${MODULE_TEMPLATE_DIR}/bin/arm/cmp" "https://github.com/Zackptg5/Cross-Compiled-Binaries-Android/blob/master/diffutils/cmp-arm?raw=true"
+get_cmpr() {
+	dl_if_dne "${MODULE_TEMPLATE_DIR}/bin/arm64/cmpr" "https://github.com/j-hc/cmpr/releases/download/20220811/cmpr-arm64-v8a"
+	dl_if_dne "${MODULE_TEMPLATE_DIR}/bin/arm/cmpr" "https://github.com/j-hc/cmpr/releases/download/20220811/cmpr-armeabi-v7a"
 }
 
 abort() { echo "$1" && exit 1; }
@@ -124,7 +126,8 @@ patch_apk() {
 	local stock_input=$1 patched_output=$2 patcher_args=$3
 	if [ -f "$patched_output" ]; then return; fi
 	# shellcheck disable=SC2086
-	java -jar "$RV_CLI_JAR" -c -a "$stock_input" -o "$patched_output" -b "$RV_PATCHES_JAR" --keystore=ks.keystore $patcher_args
+	# --rip-lib is only available in my own revanced-cli builds
+	java -jar "$RV_CLI_JAR" --rip-lib x86 --rip-lib x86_64 -c -a "$stock_input" -o "$patched_output" -b "$RV_PATCHES_JAR" --keystore=ks.keystore $patcher_args
 }
 
 zip_module() {
