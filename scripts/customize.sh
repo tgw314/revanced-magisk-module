@@ -1,17 +1,18 @@
 # shellcheck disable=SC2148,SC2086,SC2115
 ui_print ""
-am force-stop __PKGNAME
 grep __PKGNAME /proc/mounts | while read -r line; do
 	ui_print "* Un-mount"
-	echo "$line" | cut -d" " -f2 | xargs -r umount -l
+	line=${line#*' '}
+	line=${line%%' '*}
+	umount -l ${line%%\\*} # trims \040(deleted)
 done
 
 if [ $ARCH = "arm" ]; then
-	export LD_LIBRARY_PATH=$MODPATH/lib/arm
+	XDELTA_PRELOAD=$MODPATH/lib/arm
 	alias xdelta='$MODPATH/bin/arm/xdelta'
 	alias cmpr='$MODPATH/bin/arm/cmpr'
 elif [ $ARCH = "arm64" ]; then
-	export LD_LIBRARY_PATH=$MODPATH/lib/arm64
+	XDELTA_PRELOAD=$MODPATH/lib/arm64
 	alias xdelta='$MODPATH/bin/arm64/xdelta'
 	alias cmpr='$MODPATH/bin/arm64/cmpr'
 else
@@ -19,7 +20,12 @@ else
 fi
 set_perm_recursive $MODPATH/bin 0 0 0755 0777
 
-BASEPATH=$(pm path __PKGNAME | grep base | cut -d: -f2)
+basepath() {
+	basepath=$(pm path __PKGNAME | grep base)
+	echo ${basepath#*:}
+}
+
+BASEPATH=$(basepath)
 if [ -n "$BASEPATH" ] && cmpr $BASEPATH $MODPATH/stock.apk; then
 	ui_print "* Installed __PKGNAME and module stock.apk are identical"
 	ui_print "* Skipping stock APK installation"
@@ -30,11 +36,11 @@ else
 		ui_print "ERROR: APK installation failed!"
 		abort "${op}"
 	fi
-	BASEPATH=$(pm path __PKGNAME | grep base | cut -d: -f2)
+	BASEPATH=$(basepath)
 fi
 
 ui_print "* Patching __PKGNAME (v__MDVRSN) on the fly"
-if ! op=$(xdelta -d -f -s $BASEPATH $MODPATH/rvc.xdelta $MODPATH/base.apk 2>&1); then
+if ! op=$(LD_LIBRARY_PATH=$XDELTA_PRELOAD xdelta -d -f -s $BASEPATH $MODPATH/rvc.xdelta $MODPATH/base.apk 2>&1); then
 	ui_print "ERROR: Patching failed!"
 	abort "$op"
 fi
