@@ -300,7 +300,7 @@ build_music() {
 		"$update_json"
 
 	local output="music-revanced-magisk-v${last_ver}-${arch}.zip"
-	local xdelta="${TEMP_DIR}/music-revanced-v${last_ver}.xdelta"
+	local xdelta="${TEMP_DIR}/music-revanced-v${last_ver}-${arch}.xdelta"
 	xdelta_patch "$stock_apk" "$patched_apk" "$xdelta"
 	zip_module "$xdelta" "$output" "$stock_apk"
 	echo "Built Music (${arch}) '${BUILD_DIR}/${output}'"
