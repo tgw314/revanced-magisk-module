@@ -1,6 +1,6 @@
 # YouTube ReVanced Magisk Module
-[![Build Modules](https://github.com/j-hc/revanced-magisk-module/actions/workflows/build.yml/badge.svg)](https://github.com/j-hc/revanced-magisk-module/actions/workflows/build.yml)
-[![CI](https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml/badge.svg?event=schedule)](https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml)
+[![Build Modules](https://github.com/tgw314/revanced-magisk-module/actions/workflows/build.yml/badge.svg)](https://github.com/tgw314/revanced-magisk-module/actions/workflows/build.yml)
+[![CI](https://github.com/tgw314/revanced-magisk-module/actions/workflows/ci.yml/badge.svg?event=schedule)](https://github.com/tgw314/revanced-magisk-module/actions/workflows/ci.yml)
 
 This repo includes a simple script that downloads all the latest version of necessary prebuilt revanced tools and build patched apps according to your config file (so do not create issues related to revanced in this repo).
 
