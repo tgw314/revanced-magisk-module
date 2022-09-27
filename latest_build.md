@@ -2,8 +2,8 @@
   
 CLI: revanced-cli-2.13.0-all.jar  
 Integrations: app-release-unsigned-v0.43.1.apk  
-Patches: revanced-patches-2.69.3.jar  
-[Patches Changelog](https://github.com/revanced/revanced-patches/releases/tag/v2.69.3)  
+Patches: revanced-patches-2.69.4.jar  
+[Patches Changelog](https://github.com/revanced/revanced-patches/releases/tag/v2.69.4)  
 
 Twitter version: 9.58.2-release.0  
 
