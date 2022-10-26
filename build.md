@@ -1,9 +1,9 @@
 CLI: revanced-cli-2.15.0-all.jar  
 Integrations: app-release-unsigned-v0.59.0.apk  
-Patches: revanced-patches-2.90.0.jar  
-### [2.90.0](https://github.com/revanced/revanced-patches/compare/v2.89.0...v2.90.0) (2022-10-25)
+Patches: revanced-patches-2.91.0.jar  
+### [2.91.0](https://github.com/revanced/revanced-patches/compare/v2.90.0...v2.91.0) (2022-10-26)
 ### Features
-*  patch ([#858](https://github.com/revanced/revanced-patches/issues/858)) ([472fb4f](https://github.com/revanced/revanced-patches/commit/472fb4f3747c835be2c5069a0f65017ab42f8d7e))
+* remove partially complete patch ([d212e19](https://github.com/revanced/revanced-patches/commit/d212e19c3276c2ba6550f03dfd9bba47b7773524))
 
   
 Twitter: 9.65.0-release.0  
