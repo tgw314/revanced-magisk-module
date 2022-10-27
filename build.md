@@ -1,9 +1,9 @@
 CLI: revanced-cli-2.15.0-all.jar  
 Integrations: app-release-unsigned-v0.59.0.apk  
-Patches: revanced-patches-2.91.0.jar  
-### [2.91.0](https://github.com/revanced/revanced-patches/compare/v2.90.0...v2.91.0) (2022-10-26)
-### Features
-* remove partially complete patch ([d212e19](https://github.com/revanced/revanced-patches/commit/d212e19c3276c2ba6550f03dfd9bba47b7773524))
+Patches: revanced-patches-2.92.1.jar  
+#### [2.92.1](https://github.com/revanced/revanced-patches/compare/v2.92.0...v2.92.1) (2022-10-26)
+### Bug Fixes
+* **youtube/custom-branding:** use proper scaled icons ([24b5bcd](https://github.com/revanced/revanced-patches/commit/24b5bcdd703474c940fd436a37f0ae924d8b8c74))
 
   
 Twitter: 9.65.0-release.0  
