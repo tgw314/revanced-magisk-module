@@ -1,9 +1,9 @@
 CLI: revanced-cli-2.15.0-all.jar  
 Integrations: app-release-unsigned-v0.59.0.apk  
-Patches: revanced-patches-2.92.2.jar  
-#### [2.92.2](https://github.com/revanced/revanced-patches/compare/v2.92.1...v2.92.2) (2022-10-27)
+Patches: revanced-patches-2.92.3.jar  
+#### [2.92.3](https://github.com/revanced/revanced-patches/compare/v2.92.2...v2.92.3) (2022-10-27)
 ### Bug Fixes
-* **youtube/theme:** theme missing gray color ([#873](https://github.com/revanced/revanced-patches/issues/873)) ([5267d56](https://github.com/revanced/revanced-patches/commit/5267d56a05b4053d556171ffd2d2870f3f932e8e))
+* **youtube:** resolve fingerprints on mutable methods ([10e4af3](https://github.com/revanced/revanced-patches/commit/10e4af386652d51c621519f7a67aac8c22ed8c18))
 
   
 Twitter: 9.65.0-release.0  
