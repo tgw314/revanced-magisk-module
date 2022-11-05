@@ -1,9 +1,12 @@
 CLI: revanced-cli-2.16.0-all.jar  
 Integrations: app-release-unsigned-v0.66.0.apk  
-Patches: revanced-patches-2.102.1.jar  
-#### [2.102.1](https://github.com/revanced/revanced-patches/compare/v2.102.0...v2.102.1) (2022-11-04)
+Patches: revanced-patches-2.103.0.jar  
+### [2.103.0](https://github.com/revanced/revanced-patches/compare/v2.102.1...v2.103.0) (2022-11-05)
 ### Bug Fixes
-* use original app name ([#977](https://github.com/revanced/revanced-patches/issues/977)) ([ffc3c08](https://github.com/revanced/revanced-patches/commit/ffc3c08d96734893121397d506a97bd50b06bc1d))
+* apply multiple changes from integrations, refactor package structure, class names and implementations ([e756fac](https://github.com/revanced/revanced-patches/commit/e756face362e4abf2c7b17afa536feed9b0cd631))
+* **youtube/video-information:** use correct compatibility annotation ([b42e048](https://github.com/revanced/revanced-patches/commit/b42e04884bb9a60c3df30b668bfba55b1cf8eaa4))
+### Features
+* **debugging:** simplify patch name and description ([61762f7](https://github.com/revanced/revanced-patches/commit/61762f76c457f348ef599e146f3853e941d4c45c))
 
   
 Twitter: 9.65.1-release.0  
