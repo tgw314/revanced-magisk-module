@@ -1,9 +1,9 @@
 CLI: revanced-cli-2.16.0-all.jar  
 Integrations: app-release-unsigned-v0.67.2.apk  
-Patches: revanced-patches-2.104.2.jar  
-#### [2.104.2](https://github.com/revanced/revanced-patches/compare/v2.104.1...v2.104.2) (2022-11-08)
-### Bug Fixes
-* **youtube/hide-endscreen-cards:** restore functionality ([#993](https://github.com/revanced/revanced-patches/issues/993)) ([eb1bae2](https://github.com/revanced/revanced-patches/commit/eb1bae2c55e65ad29030dce6746a18662dd0fe25))
+Patches: revanced-patches-2.105.0.jar  
+### [2.105.0](https://github.com/revanced/revanced-patches/compare/v2.104.2...v2.105.0) (2022-11-09)
+### Features
+* **nyx:**  patch ([#1004](https://github.com/revanced/revanced-patches/issues/1004)) ([9dd8239](https://github.com/revanced/revanced-patches/commit/9dd82391f3f97247224e09e0143b2272a3d47053))
 
   
 Twitter: 9.65.3-release.0  
