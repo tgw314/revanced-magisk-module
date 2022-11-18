@@ -1,7 +1,9 @@
-CLI: revanced-cli-2.16.0-all.jar  
+CLI: revanced-cli-2.16.1-all.jar  
 Integrations: app-release-unsigned-v0.71.0.apk  
-Patches: revanced-patches-2.111.1.jar  
-#### [2.111.1](https://github.com/revanced/revanced-patches/compare/v2.111.0...v2.111.1) (2022-11-18)
+Patches: revanced-patches-2.111.2.jar  
+#### [2.111.2](https://github.com/revanced/revanced-patches/compare/v2.111.1...v2.111.2) (2022-11-18)
+### Bug Fixes
+* **youtube/general-ads:** import correct compatibility annotation ([#1065](https://github.com/revanced/revanced-patches/issues/1065)) ([db2085c](https://github.com/revanced/revanced-patches/commit/db2085c217311a8b7d45a01c03c6162bc60a9298))
 
   
 Twitter: 9.65.5-release.0  
