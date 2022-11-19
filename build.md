@@ -8,12 +8,6 @@ Patches: revanced-patches-2.111.3.jar
 
   
 **App Versions:**  
-Twitter: 9.65.5-release.0  
-Music (arm64-v8a): 5.31.50  
-Twitch: 14.2.0  
 YouTube: 17.43.36  
-TikTok: 27.0.16  
-Reddit: 2022.43.0  
-Music (arm-v7a): 5.31.50  
 
 [revanced-magisk-module](https://github.com/j-hc/revanced-magisk-module)  
