@@ -6,15 +6,19 @@ MODULE_TEMPLATE_DIR="revanced-magisk"
 MODULE_SCRIPTS_DIR="scripts"
 TEMP_DIR="temp"
 BUILD_DIR="build"
-PKGS_LIST="temp/module-pkgs"
+PKGS_LIST="${TEMP_DIR}/module-pkgs"
 
+if [ "${GITHUB_TOKEN+x}" ]; then
+	GH_AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
+else
+	GH_AUTH_HEADER=""
+fi
 GITHUB_REPOSITORY=${GITHUB_REPOSITORY:-$"j-hc/revanced-magisk-module"}
 NEXT_VER_CODE=${NEXT_VER_CODE:-$(date +'%Y%m%d')}
 WGET_HEADER="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0"
 DRYRUN=false
 
 SERVICE_SH=$(cat $MODULE_SCRIPTS_DIR/service.sh)
-POSTFSDATA_SH=$(cat $MODULE_SCRIPTS_DIR/post-fs-data.sh)
 CUSTOMIZE_SH=$(cat $MODULE_SCRIPTS_DIR/customize.sh)
 UNINSTALL_SH=$(cat $MODULE_SCRIPTS_DIR/uninstall.sh)
 
@@ -46,17 +50,17 @@ read_main_config() {
 
 get_prebuilts() {
 	echo "Getting prebuilts"
-	RV_CLI_URL=$(req https://api.github.com/repos/j-hc/revanced-cli/releases/latest - | json_get 'browser_download_url')
+	RV_CLI_URL=$(gh_req https://api.github.com/repos/j-hc/revanced-cli/releases/latest - | json_get 'browser_download_url')
 	RV_CLI_JAR="${TEMP_DIR}/${RV_CLI_URL##*/}"
 	log "CLI: ${RV_CLI_URL##*/}"
 
-	RV_INTEGRATIONS_URL=$(req https://api.github.com/repos/revanced/revanced-integrations/releases/latest - | json_get 'browser_download_url')
+	RV_INTEGRATIONS_URL=$(gh_req https://api.github.com/repos/revanced/revanced-integrations/releases/latest - | json_get 'browser_download_url')
 	RV_INTEGRATIONS_APK=${RV_INTEGRATIONS_URL##*/}
 	RV_INTEGRATIONS_APK="${RV_INTEGRATIONS_APK%.apk}-$(cut -d/ -f8 <<<"$RV_INTEGRATIONS_URL").apk"
 	log "Integrations: $RV_INTEGRATIONS_APK"
 	RV_INTEGRATIONS_APK="${TEMP_DIR}/${RV_INTEGRATIONS_APK}"
 
-	RV_PATCHES=$(req https://api.github.com/repos/revanced/revanced-patches/releases/latest -)
+	RV_PATCHES=$(gh_req https://api.github.com/repos/revanced/revanced-patches/releases/latest -)
 	RV_PATCHES_CHANGELOG=$(echo "$RV_PATCHES" | json_get 'body' | sed 's/\(\\n\)\+/\\n/g')
 	RV_PATCHES_URL=$(echo "$RV_PATCHES" | json_get 'browser_download_url' | grep 'jar')
 	RV_PATCHES_JAR="${TEMP_DIR}/${RV_PATCHES_URL##*/}"
@@ -77,18 +81,19 @@ abort() { echo "abort: $1" && exit 1; }
 
 set_prebuilts() {
 	[ -d "$TEMP_DIR" ] || abort "${TEMP_DIR} directory could not be found"
-	RV_CLI_JAR=$(find "$TEMP_DIR" -maxdepth 1 -name "revanced-cli-*" | tail -n1)
+	RV_CLI_JAR=$(find "$TEMP_DIR" -maxdepth 1 -name "revanced-cli-*.jar" | tail -n1)
 	[ -z "$RV_CLI_JAR" ] && abort "revanced cli not found"
 	log "CLI: ${RV_CLI_JAR#"$TEMP_DIR/"}"
-	RV_INTEGRATIONS_APK=$(find "$TEMP_DIR" -maxdepth 1 -name "app-release-unsigned-*" | tail -n1)
+	RV_INTEGRATIONS_APK=$(find "$TEMP_DIR" -maxdepth 1 -name "app-release-unsigned-*.apk" | tail -n1)
 	[ -z "$RV_CLI_JAR" ] && abort "revanced integrations not found"
 	log "Integrations: ${RV_INTEGRATIONS_APK#"$TEMP_DIR/"}"
-	RV_PATCHES_JAR=$(find "$TEMP_DIR" -maxdepth 1 -name "revanced-patches-*" | tail -n1)
+	RV_PATCHES_JAR=$(find "$TEMP_DIR" -maxdepth 1 -name "revanced-patches-*.jar" | tail -n1)
 	[ -z "$RV_CLI_JAR" ] && abort "revanced patches not found"
 	log "Patches: ${RV_PATCHES_JAR#"$TEMP_DIR/"}"
 }
 
 req() { wget -nv -O "$2" --header="$WGET_HEADER" "$1"; }
+gh_req() { wget -nv -O "$2" --header="$GH_AUTH_HEADER" "$1"; }
 log() { echo -e "$1  " >>build.md; }
 get_largest_ver() {
 	local max=0
@@ -235,10 +240,15 @@ build_rv() {
 			fi
 		fi
 		if [ $get_latest_ver = true ]; then
+			local apkmvers uptwodvers
 			if [ "$dl_from" = apkmirror ]; then
-				version=$(get_apkmirror_vers "${args[apkmirror_dlurl]##*/}" "${args[allow_alpha_version]}" | get_largest_ver)
+				apkmvers=$(get_apkmirror_vers "${args[apkmirror_dlurl]##*/}" "${args[allow_alpha_version]}")
+				version=$(echo "$apkmvers" | get_largest_ver)
+				[ "$version" ] || version=$(echo "$apkmvers" | head -1)
 			elif [ "$dl_from" = uptodown ]; then
-				version=$(get_uptodown_vers "$uptwod_resp" | get_largest_ver)
+				uptwodvers=$(get_uptodown_vers "$uptwod_resp")
+				version=$(echo "$uptwodvers" | get_largest_ver)
+				[ "$version" ] || version=$(echo "$uptwodvers" | head -1)
 			fi
 		fi
 		if [ -z "$version" ]; then
@@ -295,7 +305,6 @@ build_rv() {
 
 		uninstall_sh "$pkg_name" "$base_template"
 		service_sh "$pkg_name" "$version" "$base_template"
-		postfsdata_sh "$pkg_name" "$base_template"
 		customize_sh "$pkg_name" "$version" "$base_template"
 
 		local upj
@@ -319,7 +328,6 @@ join_args() {
 	echo "$1" | tr -d '\t\r' | tr ' ' '\n' | grep -v '^$' | sed "s/^/${2} /" | paste -sd " " - || echo ""
 }
 
-postfsdata_sh() { echo "${POSTFSDATA_SH//__PKGNAME/$1}" >"${2}/post-fs-data.sh"; }
 uninstall_sh() { echo "${UNINSTALL_SH//__PKGNAME/$1}" >"${2}/uninstall.sh"; }
 customize_sh() {
 	local s="${CUSTOMIZE_SH//__PKGNAME/$1}"
