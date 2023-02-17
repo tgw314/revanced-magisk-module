@@ -17,6 +17,15 @@ jobs:
           fetch-depth: 0
           submodules: true
 
+      - name: Get last tag
+        id: last_tag
+        uses: oprypin/find-latest-tag@v1
+        continue-on-error: true
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          releases-only: true
+
       - name: Get next version code
         id: next_ver_code
         run: echo "NEXT_VER_CODE=$(TZ=Asia/Tokyo date +%y%m%d%H)" >> $GITHUB_OUTPUT
@@ -53,14 +62,12 @@ jobs:
           release_name: ${{ steps.get_output.outputs.RELEASE_NAME }}
           tag: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
           file_glob: true
-          overwrite: false
+          overwrite: true
 
-      - name: Switch to update branch
-        run: git checkout -f update || git switch --discard-changes --orphan update
-
-      - name: Update changelog and Magisk update jsons
+      - name: Update changelog and Magisk update json
         id: update_config
         run: |
+          git checkout -f update || git switch --discard-changes --orphan update
           cp -f build.tmp build.md
           get_update_json() {
             echo "{
