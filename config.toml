@@ -41,6 +41,7 @@ arch = "arm-v7a"
 [Twitter]
 enabled = false
 build-mode = "apk"
+merge-integrations = true
 excluded-patches = ""
 version = "auto"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/twitter-inc/twitter/"
