@@ -31,7 +31,7 @@ jobs:
         run: echo "NEXT_VER_CODE=$(TZ=Asia/Tokyo date +%y%m%d%H)" >> $GITHUB_OUTPUT
 
       - name: Build modules/APKs
-        run: ./build.sh
+        run: ./build.sh config.toml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: $GITHUB_REPOSITORY
