@@ -1,20 +1,59 @@
-CLI: revanced-cli-2.21.0-all.jar  
-Integrations: revanced-integrations-0.107.0.apk  
-Patches: revanced-patches-2.173.0.jar  
+YouTube: 18.23.35  
+Music-Extended (arm64-v8a): 6.10.51  
+Twitch: 15.4.1  
+TikTok: 30.4.4  
+Reddit: 2023.27.0  
+Messenger: 417.0.0.12.64  
 
-### [2.173.0](https://github.com/revanced/revanced-patches/compare/v2.172.0...v2.173.0) (2023-05-02)
-### Features
-* **youtube/create-button:** switch create with notifications button ([385ceda](https://github.com/revanced/revanced-patches/commit/385ceda61f586f24b11a284688f55758ef5b4e74))
-* **youtube/theme:** change seekbar color via preference ([9b465d9](https://github.com/revanced/revanced-patches/commit/9b465d95887863f6b42baa6b710ed98c97383a82))
-* **youtube/theme:** theme seekbar when clicked ([691a231](https://github.com/revanced/revanced-patches/commit/691a231d99b3b2fbe446fc7edb7a88c7a3127037))
-* **youtube:** `navigation-buttons` patch ([4bece31](https://github.com/revanced/revanced-patches/commit/4bece31f56eb340933ad26da3d1bfc902ea8569f))
-* **youtube:** bump compatibility to `18.16.37` ([fe3fdd5](https://github.com/revanced/revanced-patches/commit/fe3fdd5c6cb186bcebc2f86b1d5b597109b25cb6))
-* **youtube:** support version `18.16.37` ([8beb5ea](https://github.com/revanced/revanced-patches/commit/8beb5ea860284be915c0ef0c6039821a50c14fa8))
-
-  
-**App Versions:**  
-YouTube: 18.16.37  
-
-Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) to be able to use non-root YouTube or Music  
+Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) for non-root YouTube or YT Music  
 
 [revanced-magisk-module](https://github.com/j-hc/revanced-magisk-module)  
+
+---
+Changelog:  
+CLI: j-hc/revanced-cli-2.23.0-all.jar  
+Integrations: inotia00/revanced-integrations-0.112.3.apk  
+Patches: inotia00/revanced-patches-2.184.3.jar  
+
+YouTube
+==
+- feat(youtube): remove `hide-live-chat-button` patch (location of the live chat button has been moved even in the old layout)
+- feat(youtube/hide-button-container): changed to expose `Experimental Flags` on YouTube v18.20.39 https://github.com/inotia00/ReVanced_Extended/issues/1103
+- feat(youtube/spoof-player-parameter): changed to selectable option for MicroG (ROOT) users https://github.com/inotia00/ReVanced_Extended/issues/1110
+- fix(youtube/hide-filmstrip-overlay): patch is broken on YouTube v18.20.39
+- fix(youtube/hide-feed-flyout-panel): unintended menus are hidden https://github.com/inotia00/ReVanced_Extended/issues/1129
+- fix(youtube): move the patch to the correct path
+- fix(youtube/hide-account-menu): app crashes in landscape mode https://github.com/inotia00/ReVanced_Extended/issues/549
+- fix(youtube/spoof-player-parameter): show video time and chapters while using seekbar
+- refactor(youtube): renamed some patches and description
+- feat(youtube/translations): update translation
+`Arabic`, `Chinese Traditional`, `French`, `Greek`, `Indonesian`, `Italian`, `Japanese`, `Korean`, `Polish`, `Russian`, `Spanish`, `Turkish`, `Vietnamese`
+
+
+Music
+==
+- refactor(music): renamed some patches and description
+- feat(music/translations): update translation
+`Indonesian`, `Vietnamese`
+
+
+Etc
+==
+- chore: use new patch naming convention
+- refactor: change patches naming convention
+- refactor: remove unnecessary annotations
+
+※ Compatible ReVanced Manager: [RVX Manager v1.4.0 (fork)](https://github.com/inotia00/revanced-manager/releases/tag/v1.4.0)
+[Crowdin translation]
+- [European Countries](https://crowdin.com/project/revancedextendedeu)
+- [Other Countries](https://crowdin.com/project/revancedextended)
+---
+CLI: j-hc/revanced-cli-2.23.0-all.jar  
+Integrations: ReVanced/revanced-integrations-0.112.0.apk  
+Patches: ReVanced/revanced-patches-2.184.0.jar  
+
+### [2.184.0](https://github.com/revanced/revanced-patches/compare/v2.183.1...v2.184.0) (2023-07-11)
+### Features
+* **youtube/custom-branding:** update logo ([e2187f3](https://github.com/revanced/revanced-patches/commit/e2187f33ff82fce40592517aef31cb191b42987c))
+
+---  
