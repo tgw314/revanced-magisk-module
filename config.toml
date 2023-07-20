@@ -7,8 +7,7 @@ build-mindetach-module = true
 
 [YouTube]
 build-mode = "module"
-excluded-patches = "debugging"
-included-patches = "open-links-directly custom-video-speed minimized-playback custom-branding client-spoof old-quality-layout downloads seekbar-tapping video-ads general-ads"
+included-patches = "copy-video-url disable-shorts-on-startup external-downloads hide-ads minimized-playback old-video-quality-menu open-links-externally remember-video-quality swipe-controls video-ads video-speed"
 version = "auto"
 exclusive-patches = true
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
