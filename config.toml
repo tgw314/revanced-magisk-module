@@ -8,8 +8,9 @@ build-mindetach-module = true
 [YouTube]
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 build-mode = "module"
-included-patches = "client-spoof copy-video-url custom-player-overlay-opacity disable-shorts-on-startup external-downloads hdr-auto-brightness hide-ads minimized-playback navigation-buttons old-video-quality-menu open-links-externally playback-speed remember-video-quality seekbar-tapping swipe-controls video-ads"
+included-patches = "client-spoof copy-video-url custom-branding custom-player-overlay-opacity disable-shorts-on-startup external-downloads hdr-auto-brightness hide-ads minimized-playback navigation-buttons old-video-quality-menu open-links-externally playback-speed remember-video-quality seekbar-tapping swipe-controls video-ads"
 exclusive-patches = true
+module-prop-name = "ytrv-magisk"
 
 [Music]
 enabled = false
