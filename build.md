@@ -1,7 +1,7 @@
-YouTube: 18.32.39  
-Music-Extended (arm64-v8a): 6.17.52  
-Music-Extended (arm-v7a): 6.17.52  
-YouTube-Extended: 18.31.40  
+YouTube: 18.38.44  
+Music-Extended (arm64-v8a): 6.21.51  
+Music-Extended (arm-v7a): 6.21.51  
+YouTube-Extended: 18.33.40  
 
 Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) for non-root YouTube or YT Music  
 
@@ -9,99 +9,61 @@ Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) for
 
 ---
 Changelog:  
-CLI: inotia00/revanced-cli-3.1.2-all.jar  
-Integrations: inotia00/revanced-integrations-0.117.1.apk  
-Patches: inotia00/revanced-patches-2.190.1.jar  
+CLI: inotia00/revanced-cli-3.1.4-all.jar  
+Integrations: inotia00/revanced-integrations-0.117.21.apk  
+Patches: inotia00/revanced-patches-2.190.21.jar  
 
 YouTube
 ==
-- feat(youtube): add support version `v18.19.36` & `v18.31.40`
-- feat(youtube/litho-filter): update filter
-- feat(youtube/shared-resource-id) If the target resource ID is not found, empty index is returned instead of generating patch exception
-- fix(youtube/custom-playback-speed): does not work on tablet devices
-- fix(youtube/custom-playback-speed): when user opens the sharing panel, the custom playback speed panel opens
-- fix(youtube/default-video-quality): rollback commit
-- fix(youtube/hide-layout-components): custom filters are separated by commas instead of line-by-line
-- fix(youtube/hide-layout-components): expandable chip under videos not hidden in related videos
-- fix(youtube/litho-filter): don't remove the buffer until the thread stops
-- fix(youtube/old-quality-layout): does not work on tablet devices
-- fix(youtube/overlay-button): overlay button not hidden when scrubbing seekbar
-- fix(youtube/overlay-button): trim empty space from package name
-- fix(youtube/settings): remove disable some settings code for tablet devices
+- feat(youtube/hide-button-container): remove `Hide live chat button` settings (no longer exists in the button container)
+- feat(youtube/overlay-buttons): apply radio button instead of list view in playback speed dialog
+- feat(youtube/swipe-controls): remove `press-to-swipe gesture` settings (fix https://github.com/inotia00/ReVanced_Extended/issues/517)
+- feat(youtube/swipe-controls): remove `save and restore brightness` settings
+- fix(youtube/hide-filmstrip-overlay): filmstrip overlay is always hidden in YouTube v18.33.40 https://github.com/inotia00/ReVanced_Extended/issues/1463
+- fix(youtube/litho-filter): exception occurs when only patches that use LowlevelFilter are included
+- fix(youtube/navber-index-hook): patch fails on some versions
+- fix(youtube/overlay-buttons): overlay buttons are not hidden when swiping the seekbar with new thumbnail preview enabled https://github.com/inotia00/ReVanced_Extended/issues/1438
 - feat(youtube/translations): update translation
-`Chinese Traditional`, `Indonesian`, `Russian`, `Ukrainian`, `Vietnamese`
+`Chinese Traditional`, `French`, `Greek`, `Hungarian`, `Italian`, `Japanese`, `Korean`, `Polish`, `Russian`, `Vietnamese`
 
 
 YouTube Music
 ==
-- feat(music): add compatibility version constraints (ryd does not support older versions)
-- feat(music): add `enable-old-style-library-shelf` patch
-- feat(music): add `enable-playback-speed` patch
-- feat(music): add `hide-button-container-labels` patch
-- feat(music): add `hide-emoji-picker` patch
-- feat(music): add `hide-flyout-panel` patch
-- feat(music): add `hide-radio-button` patch
-- feat(music) add `hide-sample-button` patch
-- feat(music) add `hide-tooltip-content` patch
-- feat(music) add `hook-download-button` patch
-- feat(music): add `remember-playback-speed` patch
-- feat(music): add `return-youtube-dislike` patch
-- feat(music): delete `share-button-hook` patch
-- feat(music): remove `decoding-patch` that are no longer used
-- feat(music/amoled): patch now applies the amoled theme to the comment input box as well
-- feat(music/enable-custom-filter): separate filters by line instead of commas
-- feat(music/settings): apply material style to alert dialog
-- feat(music/settings): change some default value
-- feat(music/settings): remove divider from settings
-- feat(music/settings): trim empty space from edit text dialog
-- feat(music/settings): when installing for the first time, a reboot dialog is shown
-- feat(music/shared-resource-id): If the target resource ID is not found, empty index is returned instead of generating patch exception
-- feat(music/hide-get-premium): patch now also hides the premium membership label in settings
-- fix(music/exclusive audio playback): not compatible with latest version
-- fix(music/hide-upgrade-button): not compatible with latest version
-- fix(music/remember-video-quality): not compatible with latest version
-- fix(music/settings): blank screen appears when text input dialog is shown
-- refactor(music/settings): change settings structure
+- feat(music/enable-playback-speed): apply radio button instead of list view in playback speed dialog
 - feat(music/translations): update translation
-`Bengali`, `Brazilian`, `Chinese Simplified`, `Chinese Traditional`, `French`, `Korean`, `Polish`, `Russian`, `Spanish`, `Turkish`, `Vietnamese`
+`Chinese Traditional`, `Japanese`, `Vietnamese`
 
 
-Reddit
-==
-- feat(reddit): remove `decoding-patch` that are no longer used
-- feat(reddit/shared-resource-id) If the target resource ID is not found, empty index is returned instead of generating patch exception
-
-
-Etc
-==
-- build: bump patcher to 14.2.2
-- build: update gradle and dependency
-- chore: `ReadmeGenerator` now generates the minimum and maximum supported versions
-- ci: matched with official source
-
-- YT Music now also has version restrictions. check [README.md](https://github.com/inotia00/revanced-patches#-comgoogleandroidappsyoutubemusic)
-- in case of RVX Music, clean installation is recommended
-- in case of YouTube, the patch is not broken even in the latest beta: `YouTube v18.35.35 beta`
-- as some patches may not be applied properly in the latest version due to a/b tests, so I marked the supported version as `YouTube v18.31.40`
-
-
-
-※ Compatible ReVanced Manager: [RVX Manager v1.9.5 (fork)](https://github.com/inotia00/revanced-manager/releases/tag/v1.9.5)
+※ Compatible ReVanced Manager: [RVX Manager v1.10.3 (fork)](https://github.com/inotia00/revanced-manager/releases/tag/v1.10.3)
 [Crowdin translation]
 - [YouTube/European Countries](https://crowdin.com/project/revancedextendedeu)
 - [YouTube/Other Countries](https://crowdin.com/project/revancedextended)
 - [YT Music](https://crowdin.com/project/revanced-music-extended)
 
 ---
-CLI: j-hc/revanced-cli-3.1.0-all.jar  
-Integrations: ReVanced/revanced-integrations-0.117.1.apk  
-Patches: ReVanced/revanced-patches-2.190.0.jar  
+CLI: j-hc/revanced-cli-3.2.0-all.jar  
+Integrations: ReVanced/revanced-integrations-0.118.0.apk  
+Patches: ReVanced/revanced-patches-2.191.0.jar  
 
-### [2.190.0](https://github.com/ReVanced/revanced-patches/compare/v2.189.0...v2.190.0) (2023-09-03)
+### [2.191.0](https://github.com/ReVanced/revanced-patches/compare/v2.190.0...v2.191.0) (2023-10-04)
 ### Bug Fixes
-* **Infinity for Reddit - Spoof client:** Support latest version ([8a5311b](https://github.com/ReVanced/revanced-patches/commit/8a5311b1e645ca2aab1e416d647cf52bf0be6e7f))
-### Features
-* **Photomath:** Support latest version ([5a2cad0](https://github.com/ReVanced/revanced-patches/commit/5a2cad077f03880ee1417c5cfd448bbdea4c07e2))
-* **Twitch:** Support version `16.1.0` ([#2923](https://github.com/ReVanced/revanced-patches/issues/2923)) ([d9834a9](https://github.com/ReVanced/revanced-patches/commit/d9834a9abb43390af4cb33f5dd5a0e2d3b7060e2))
-
+* Add hooks to existing hook set ([5655067](https://github.com/ReVanced/revanced-patches/commit/5655067f28d010f3a7a6d91b09ac984eee162031))
+* **Duolingo - Unlock Super:** Get correct instruction offset ([#3023](https://github.com/ReVanced/revanced-patches/issues/3023)) ([5146de8](https://github.com/ReVanced/revanced-patches/commit/5146de872acb17d7c21019ac7ed531f27361038f))
+* **Google Recorder - Remove device restrictions:** Clarify limitation ([094f57b](https://github.com/ReVanced/revanced-patches/commit/094f57b601d746079c43fd5c8834e3e6be07f946))
+* **Infinity for Reddit - Spoof client:** Constrain patch to last working versions ([#2944](https://github.com/ReVanced/revanced-patches/issues/2944)) ([ee975de](https://github.com/ReVanced/revanced-patches/commit/ee975dea846c77af0efe608e647075f4055af320))
+* **Relay - Spoof client:** Restore OAuth login ([96e01f7](https://github.com/ReVanced/revanced-patches/commit/96e01f7a7b87f468776fbde48e114a3f51630a46))
+* **Slide - Spoof client:** Use correct patch name ([f355dbf](https://github.com/ReVanced/revanced-patches/commit/f355dbf1d2af3075c6a3f13d8bf5f8dca22e6005))
+* **Sync for Reddit:** Do not throw an error when not necessary ([ef644e4](https://github.com/ReVanced/revanced-patches/commit/ef644e48018a90429108779b7419299c4f43e4ff))
+* **TikTok - Hide ads:** Constrain to last working version ([56e45a6](https://github.com/ReVanced/revanced-patches/commit/56e45a60a405b5382e1ef6f7bcd5de570c7c52ef))
+* **Twitch - Audio ads:** Support missing version `16.1.0` ([#2928](https://github.com/ReVanced/revanced-patches/issues/2928)) ([688d8fa](https://github.com/ReVanced/revanced-patches/commit/688d8fa7e86862e03d8336af5f6cb207c4b72593))
+* Use consistent toggle description ([#2983](https://github.com/ReVanced/revanced-patches/issues/2983)) ([ceaa512](https://github.com/ReVanced/revanced-patches/commit/ceaa512f317fdd95dca37e425b389494a9b2e226))
+* Use correct instruction ([246cf2c](https://github.com/ReVanced/revanced-patches/commit/246cf2cc92624e43bc7405cb32be9b560bb648c5))
+* **YouTube - Client spoof:** adjust settings text ([#3035](https://github.com/ReVanced/revanced-patches/issues/3035)) ([59a2e96](https://github.com/ReVanced/revanced-patches/commit/59a2e9617fc4f898e87cefeb3d2c6996b925fa90))
+* **YouTube - Client spoof:** Display seekbar thumbnails in high quality ([5e8a2d3](https://github.com/ReVanced/revanced-patches/commit/5e8a2d3fe77a4a08ea32e7dc22f2c8e4048b7a6b))
+* **YouTube - Client spoof:** Do not record feed videos to history by default ([#3017](https://github.com/ReVanced/revanced-patches/issues/3017)) ([5ccbf1b](https://github.com/ReVanced/revanced-patches/commit/5ccbf1bf8ed92cde61689a2b1e3a3c1e915959a7))
+* **YouTube - Client spoof:** Removed unused code ([#3030](https://github.com/ReVanced/revanced-patches/issues/3030)) ([15e27bf](https://github.com/ReVanced/revanced-patches/commit/15e27bf93e6366ba8a59091409c4271c8230edb6))
+* **YouTube - Client spoof:** Restore seekbar thumbnails ([bf4a115](https://github.com/ReVanced/revanced-patches/commit/bf4a1159ff745f8f91e11f30db4651d85769227b))
+* **YouTube - Client spoof:** Show seekbar thumbnail for age restricted and paid videos ([1a79300](https://github.com/ReVanced/revanced-patches/commit/1a793007c919753a8c31ab2382d86c0546eefe20))
+* **YouTube - Custom filter:** Use new lines between components instead of commas ([#2952](https://github.com/ReVanced/revanced-patches/issues/2952)) ([ecb2e32](https://github.com/ReVanced/revanced-patches/commit/ecb2e32b1e296590d150bdd3f8bea2665b19a84d))
+* **YouTube - Hide 
 ---  
