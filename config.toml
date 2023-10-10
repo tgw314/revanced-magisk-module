@@ -8,7 +8,7 @@ enable-magisk-update = true   # set this to false if you do not want to receive 
 module-prop-name = "ytrv-magisk"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 build-mode = "module"
-included-patches = "External downloads Copy video url Seekbar tapping Swipe controls Hide ads Video ads Old video quality menu Playback speed HDR auto brightness Remember video quality Minimized playback Bypass URL redirects Client spoof Navigation buttons Custom branding"
+included-patches = "'External downloads' 'Copy video url' 'Seekbar tapping' 'Swipe controls' 'Hide ads' 'Video ads' 'Old video quality menu' 'Playback speed' 'Remember video quality' 'Minimized playback' 'Bypass URL redirects' 'Client spoof' 'Navigation buttons' 'Custom branding'"
 exclusive-patches = true
 
 [Reddit]
