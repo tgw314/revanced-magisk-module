@@ -1,59 +1,59 @@
 logging-to-file = true        # enables logging of every patch process to a seperate file
 enable-magisk-update = true   # set this to false if you do not want to receive updates for the module in magisk app
-build-mindetach-module = true
 
 # add 'enabled = false' for not patching a specific app or remove it from the config
 # see https://github.com/j-hc/revanced-magisk-module/blob/main/CONFIG.md for more detailed explanations
 
 [YouTube]
-apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 build-mode = "module"
 included-patches = "client-spoof copy-video-url custom-branding custom-player-overlay-opacity disable-shorts-on-startup external-downloads hdr-auto-brightness hide-ads minimized-playback navigation-buttons old-video-quality-menu open-links-externally playback-speed remember-video-quality seekbar-tapping swipe-controls video-ads"
 exclusive-patches = true
 module-prop-name = "ytrv-magisk"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 
 [Music-Extended]
+enabled = false
 app-name = "Music"
 patches-source = "inotia00/revanced-patches"
 integrations-source = "inotia00/revanced-integrations"
 cli-source = "inotia00/revanced-cli"
 rv-brand = "ReVanced Extended"
 build-mode = "both"
-apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube-music/"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
 apkmirror-arch = "both"
 
 [YouTube-Extended]
+enabled = false
 app-name = "YouTube"
 patches-source = "inotia00/revanced-patches"
 integrations-source = "inotia00/revanced-integrations"
 cli-source = "inotia00/revanced-cli"
 rv-brand = "ReVanced Extended"
 build-mode = "both"
-apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 
 [Music]
 enabled = false
 build-mode = "both"
-excluded-patches = ""
-apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube-music/"
-apkmirror-arch = "both"                                                     # both arm64-v8a and arm-v7a
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
+apkmirror-arch = "both"
 
 [Twitter]
 enabled = false
 build-mode = "apk"
-apkmirror-dlurl = "https://www.apkmirror.com/apk/twitter-inc/twitter/"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.twitter.android"
 
 [Twitch]
 enabled = false
-apkmirror-dlurl = "https://www.apkmirror.com/apk/twitch-interactive-inc/twitch/"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/tv.twitch.android.app"
 
 [TikTok]
 enabled = false
-apkmirror-dlurl = "https://www.apkmirror.com/apk/tiktok-pte-ltd/tik-tok-including-musical-ly/"
+uptodown-dlurl = "https://tiktok.en.uptodown.com/android"
 
 [Reddit]
 enabled = false
-apkmirror-dlurl = "https://www.apkmirror.com/apk/redditinc/reddit/"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.reddit.frontpage"
 
 [Lightroom]
 enabled = false
