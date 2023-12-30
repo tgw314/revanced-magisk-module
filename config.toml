@@ -9,9 +9,13 @@ enable-magisk-update = true   # set this to false if you do not want to receive 
 [YouTube]
 module-prop-name = "ytrv-magisk"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
+patches-source = "inotia00/revanced-patches"
+integrations-source = "inotia00/revanced-integrations"
+rv-brand = "inotia00 ReVanced"
 build-mode = "module"
-included-patches = "'Custom branding'"
-excluded-patches = "'Theme' 'GmsCore support'"
+included-patches = "'Disable landscape mode' 'Enable song search' 'Hide animated button background' 'Hide double tap overlay filter' 'Hide player button background' 'Hide voice search button' 'MaterialYou' 'Premium heading' 'Shorts outline button'"
+excluded-patches = "'MicroG support' 'Theme'"
+
 # included-patches = "'External downloads' 'Copy video url' 'Seekbar tapping' 'Swipe controls' 'Hide ads' 'Video ads' 'Old video quality menu' 'Playback speed' 'Remember video quality' 'Minimized playback' 'Bypass URL redirects' 'Client spoof' 'Navigation buttons' 'Custom branding'"
 # exclusive-patches = true
 
