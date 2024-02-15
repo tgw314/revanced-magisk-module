@@ -1,0 +1,11 @@
+[
+  {
+    "patchName": "Custom branding name for YouTube",
+    "options": [
+      {
+        "key": "appName",
+        "value": "YouTube RVX"
+      }
+    ]
+  }
+]
