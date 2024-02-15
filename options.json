@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "patchName": "Custom branding name Reddit",
+    "options": [
+      {
+        "key": "AppName",
+        "value": "Reddit ReX"
+      }
+    ]
+  },
+  {
+    "patchName": "Custom branding name YouTube",
+    "options": [
+      {
+        "key": "AppName",
+        "value": "YouTube ReX"
+      }
+    ]
+  }
+]
