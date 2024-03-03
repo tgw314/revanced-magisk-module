@@ -6,9 +6,9 @@ enable-magisk-update = true # set this to false if you do not want to receive up
 # you can use rvmm-config-gen to generate a config
 
 [YouTube]
-# apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
-# archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 module-prop-name = "ytrv"
+apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 build-mode = "both"
 included-patches = "'MaterialYou' 'Shorts outline button'"
