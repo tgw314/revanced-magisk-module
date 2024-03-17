@@ -1,5 +1,5 @@
-Reddit: 2024.08.0  
-YouTube: 19.05.36  
+YouTube: 19.09.37  
+Reddit: 2024.11.0  
 
 Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) for non-root YouTube and YT Music  
 Use [zygisk-detach](https://github.com/j-hc/zygisk-detach) module to detach YouTube and YT Music from Play Store  
@@ -8,6 +8,6 @@ Use [zygisk-detach](https://github.com/j-hc/zygisk-detach) module to detach YouT
 
 Changelog:  
 CLI: j-hc/revanced-cli-4.4.1-all.jar  
-Integrations: YT-Advanced/revanced-integrations-0.146.0.apk  
-Patches: YT-Advanced/revanced-patches-2.220.9.jar  
-[Changelog](https://github.com/YT-Advanced/ReX-patches/releases/tag/v2.220.9)  
+Integrations: anddea/revanced-integrations-0.147.3.apk  
+Patches: anddea/revanced-patches-2.221.0.3.jar  
+[Changelog](https://github.com/anddea/revanced-patches/releases/tag/v2.221.0.3)  
