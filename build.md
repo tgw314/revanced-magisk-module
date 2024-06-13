@@ -1,4 +1,3 @@
-Reddit: 2024.17.0  
 Twitter: 10.44.0-release.0  
 YouTube: 19.21.40  
 
