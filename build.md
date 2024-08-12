@@ -1,14 +1,14 @@
-YouTube: 19.16.39  
+Twitter: 10.53.1-release.0  
 
 Install [Microg](https://github.com/ReVanced/GmsCore/releases) for non-root YouTube and YT Music APKs  
 Use [zygisk-detach](https://github.com/j-hc/zygisk-detach) to detach root ReVanced YouTube and YT Music from Play Store  
 
 [revanced-magisk-module](https://github.com/j-hc/revanced-magisk-module)
   
-CLI: inotia00/revanced-cli-4.6.1-all.jar  
-Integrations: inotia00/revanced-integrations-1.12.3.apk  
-Patches: inotia00/revanced-patches-4.12.3.jar  
-[Changelog](https://github.com/inotia00/revanced-patches/releases/tag/v4.12.3)  
+CLI: j-hc/revanced-cli-4.6.0-all.jar  
+Integrations: crimera/revanced-integrations-1.25.0.apk  
+Patches: crimera/piko-twitter-patches-1.36.0.jar  
+[Changelog](https://github.com/crimera/piko/releases/tag/v1.36.0)  
 
 Skipped:  
-Patches: crimera/piko-twitter-patches-1.35.0.jar    
+Patches: inotia00/revanced-patches-4.12.3.jar    
