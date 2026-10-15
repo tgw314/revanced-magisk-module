@@ -3,6 +3,12 @@
 RVPATH=/data/adb/rvhc/${MODDIR##*/}.apk
 . "$MODDIR/config"
 
+# NoMount (VFS path redirection) is used when its metamodule is active, bind mounts otherwise
+NMBIN=/data/adb/metamodule/bin/nm
+[ -x "$NMBIN" ] || NMBIN=/data/adb/modules/nomount/bin/nm
+[ -x "$NMBIN" ] || NMBIN=nm
+nomount() { command -v "$NMBIN" >/dev/null 2>&1 && "$NMBIN" version >/dev/null 2>&1; }
+
 ch_desc() {
 	sed -i "s|^description=.*|description=${1}|" "$MODDIR/module.prop"
 }
@@ -37,11 +43,17 @@ umount_all() {
 		mp=${line#* } mp=${mp%% *} mp=${mp%%\\*}
 		su -M -c umount -l "${mp}"
 	done
+	if nomount; then
+		"$NMBIN" rule list 2>/dev/null | while read -r v _ r; do
+			[ "$r" = "$RVPATH" ] && "$NMBIN" rule del "$v"
+		done
+	fi
 	am force-stop "$PKG_NAME" || :
 }
 
 get_mounts() {
 	su -M -c grep -F "$PKG_NAME" /proc/mounts || :
+	if nomount; then "$NMBIN" rule list 2>/dev/null | grep -F " -> $RVPATH" || :; fi
 }
 
 mount_rv() {
@@ -59,7 +71,14 @@ mount_rv() {
 		ch_desc_err "Error chcon: '$OP'"
 		return 1
 	fi
-	mount -o bind "$RVPATH" "${1}/base.apk"
+	if ! { nomount && "$NMBIN" rule add "${1}/base.apk" "$RVPATH"; }; then
+		mount -o bind "$RVPATH" "${1}/base.apk"
+	fi
+	# fails when NoMount silently drops the rule or the mount did not take effect
+	if [ "$(stat -c %s "${1}/base.apk" 2>/dev/null)" != "$(stat -c %s "$RVPATH" 2>/dev/null)" ]; then
+		ch_desc_err "Failed to redirect '${1}/base.apk'"
+		return 1
+	fi
 	am force-stop "$PKG_NAME"
 	cp -f "$MODDIR/module.prop.orig" "$MODDIR/module.prop"
 	return 0

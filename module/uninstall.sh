@@ -1,9 +1,15 @@
 #!/system/bin/sh
 
 MODDIR=${0%/*}
-. "$MODDIR/config"
+. "$MODDIR/utils.sh"
 
-rm -f "/data/adb/rvhc/${MODDIR##*/}.apk"
+if nomount; then
+	"$NMBIN" rule list 2>/dev/null | while read -r v _ r; do
+		[ "$r" = "$RVPATH" ] && "$NMBIN" rule del "$v"
+	done
+fi
+
+rm -f "$RVPATH"
 rmdir "/data/adb/rvhc"
 
 rm -f "/data/adb/post-fs-data.d/$PKG_NAME-uninstall.sh"
