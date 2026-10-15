@@ -99,7 +99,19 @@ install() {
 					mkdir -p /data/adb/rvhc/empty /data/adb/post-fs-data.d
 					chcon u:object_r:system_file:s0 /data/adb/rvhc/empty
 					P="/data/adb/post-fs-data.d/$PKG_NAME-uninstall.sh"
-					echo "mount -o bind /data/adb/rvhc/empty ${BASEPATH}" >"$P"
+					sed "s|@BASEPATH@|${BASEPATH}|" >"$P" <<'EOF'
+#!/system/bin/sh
+# hide the stock app before the framework scans it
+N=/data/adb/metamodule/bin/nm
+[ -x "$N" ] || N=/data/adb/modules/nomount/bin/nm
+if [ -x "$N" ]; then
+	# on LKM setups NoMount's driver is not loaded yet at this stage, so wait for it
+	i=0
+	while [ "$i" -lt 10 ] && ! "$N" version >/dev/null 2>&1; do sleep 1; i=$((i + 1)); done
+	"$N" rule add --whiteout "@BASEPATH@" && exit 0
+fi
+mount -o bind /data/adb/rvhc/empty "@BASEPATH@"
+EOF
 					chmod +x "$P"
 
 					ui_print "* Created the uninstall script."
@@ -166,7 +178,12 @@ ui_print "* Mounting $PKG_NAME"
 mkdir -p "/data/adb/rvhc"
 mv -f "$MODPATH/base.apk" "$RVPATH"
 
-if ! op=$(su -M -c mount -o bind "$RVPATH" "$BASEPATH/base.apk" 2>&1); then
+if nomount; then
+	if ! op=$("$NMBIN" rule add "$BASEPATH/base.apk" "$RVPATH" 2>&1); then
+		ui_print "ERROR: NoMount rule add failed!"
+		ui_print "$op"
+	fi
+elif ! op=$(su -M -c mount -o bind "$RVPATH" "$BASEPATH/base.apk" 2>&1); then
 	ui_print "ERROR: Mount failed!"
 	ui_print "$op"
 fi
